@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '..', 'lib', 'snoozerlib.rb')
+require File.expand_path(File.join(File.dirname(__FILE__), '..', 'lib', 'snoozerlib.rb'))
 
 # Set a shortcut for today's date
 TODAY = Date.today

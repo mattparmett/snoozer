@@ -21,7 +21,7 @@ heroku ps:scale web=0 worker=1 #make sure we have a worker process running, not 
 
 Immediately after installing Snoozer, you'll want to configure it to hook into your Gmail account:
 
-	heroku add:config gmail_user=[gmail username] gmail_password=[gmail password]
+	heroku config:add gmail_username=[gmail username] gmail_password=[gmail password]
 
 Your login credentials are stored as envirnomental variables, so they're inaccessible outside of your Heroku instance of Snoozer.
 

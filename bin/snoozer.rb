@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), '..', 'lib', 'snoozerlib.rb')
 
 # Run this script every hour
-every '1h' do
+every '5m' do
   # Set a shortcut for today's date
   TODAY = Date.today
 

@@ -10,7 +10,7 @@ server_thread = Thread.new { server.start }
 
 # start scheduler in foreground
 scheduler = Rufus::Scheduler.start_new
-scheduler.every '1h' do
+scheduler.every '1m' do
 	`ruby 'bin/snoozer.rb'`
 end
 scheduler.join

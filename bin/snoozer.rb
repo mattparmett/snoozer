@@ -6,16 +6,9 @@ TODAY = Date.today
 # Create a snoozer object
 snoozer = Snoozer.new(gmail_username: ENV['gmail_username'], gmail_password: ENV['gmail_password'])
 
-# Test
-snoozer.unsnooze do
-  label                'Test'
-  day                  Date.today.strftime('%A').downcase
-  labeled_before        Date.today + 1
-  action               'unread_to_inbox'
-end
-
-# If it is 10AM
-if Time.now == Time.mktime(TODAY.year, TODAY.month, TODAY.day, 10, 0, 0)
+# If it is 10AM (between 10 and 10:05, to account for startup/error time)
+if Time.now > Time.mktime(TODAY.year, TODAY.month, TODAY.day, 10, 0, 0) && \
+   Time.now < Time.mktime(TODAY.year, TODAY.month, TODAY.day, 10, 5, 0)
 
   # For all messages in the tomorrow label that were moved to that label
   # before today, mark them unread and move them to the inbox
@@ -47,8 +40,9 @@ if Time.now == Time.mktime(TODAY.year, TODAY.month, TODAY.day, 10, 0, 0)
   end
 end
 
-# If it is 8PM
-if Time.now == Time.mktime(TODAY.year, TODAY.month, TODAY.day, 20, 0, 0)
+# If it is 8PM (between 8 and 8:05 to account for error)
+if Time.now > Time.mktime(TODAY.year, TODAY.month, TODAY.day, 20, 0, 0) && \
+   Time.now < Time.mktime(TODAY.year, TODAY.month, TODAY.day, 20, 5, 0)
   # For all messages in the later today label that were moved to that label
   # today, mark them unread and move them to the inbox
   snoozer.unsnooze do

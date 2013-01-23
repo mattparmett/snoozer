@@ -72,7 +72,7 @@ end
 
 ### The Action Template ###
 
-Actions are essentially extensions of the Snoozer class, which makes them available to be used in the nice way described above.  To write an action, you need some knowledge of Ruby and the `gmail` gem.  The `unread_to_inbox` action included with Snoozer marks an email as unread and sends it back to the inbox, emulating the function of the Mailbox app; see that file for an example of an action.  Another simple action, `star`, could look like:
+Actions are essentially extensions of the Snoozer class, which makes them available to be used in the nice way described above.  To write an action, you need some knowledge of Ruby and the `gmail` gem.  The `mark_unread` action included with Snoozer marks an email as unread, and `move_to_inbox` sends the email back to your inbox; used todather, these actions emulate the function of the Mailbox app.  See those files for additional examples of actions.  Another simple action, `star`, could look like:
 
 ```ruby
 class Snoozer

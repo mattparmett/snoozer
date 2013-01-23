@@ -77,9 +77,7 @@ Actions are essentially extensions of the Snoozer class, which makes them availa
 ```ruby
 class Snoozer
   def star
-    read_label(@label).each do |email|
-      email.star!
-    end
+    read_label(@label).each { |email| email.star! }
   end
 end
 ```

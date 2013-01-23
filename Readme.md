@@ -31,7 +31,7 @@ The action happens in the `bin` folder, in `snoozer.rb`.  You will want to edit 
 
 ```ruby
 snoozer.unsnooze do
-	# The label snoozer should look for messages in
+  # The label snoozer should look for messages in
   label                'Tomorrow'
 
   # The day on which this filter should operate
@@ -76,8 +76,8 @@ Actions are essentially extensions of the Snoozer class, which makes them availa
 
 ```ruby
 class Snoozer
-	def star
-		read_label(@label).each do |email|
+  def star
+    read_label(@label).each do |email|
       email.star!
     end
   end

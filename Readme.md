@@ -31,11 +31,11 @@ The action happens in the `bin` folder, in `snoozer.rb`.  You will want to edit 
 
 ```ruby
 snoozer.unsnooze do
-  # The label snoozer should look for messages in
-  label                'Tomorrow'
+  # The label in which snoozer should look for messages
+  labels               ['This Weekend', 'Beginning of the Week']
 
-  # The day on which this filter should operate
-  day                  Date.today.strftime('%A').downcase
+  # The days on which this filter should operate
+  days                 ['sunday', 'monday']
 
   # Operate on messages labeled before specified date
   labeled_before       Date.today
@@ -44,7 +44,7 @@ snoozer.unsnooze do
   labeled_after        Date.today - 4
 
   # Action to take on messages that match the above criteria
-  action               'unread_to_inbox'
+  actions              [:mark_unread, :move_to_inbox]
 end
 ```
 
@@ -63,10 +63,10 @@ Snoozer lets users define custom actions which it can then apply to email in one
 
 ```ruby
 snoozer.unsnooze do
-  label                'Test'
-  day                  Date.today.strftime('%A').downcase
+  labels               ['Test']
+  days                 [Date.today.strftime('%A').downcase]
   labeled_before       Date.today + 1
-  action               [action_name]
+  actions              [:action_name]
 end
 ```
 
@@ -77,12 +77,13 @@ Actions are essentially extensions of the Snoozer class, which makes them availa
 ```ruby
 class Snoozer
   def star
-    read_label(@label).each { |email| email.star! }
+    @labels.each do |label|
+      read_label(label).each { |email| email.star! }
   end
 end
 ```
 
-Actions have access to the messages in the label specified in the Snoozer block.  To iterate through these messages, use `read_label(@label).each { |email| }` like shown above.
+Actions have access to the list of labels specified in the Snoozer block through the variable `@labels`.  To iterate through messages in a label, use `read_label(label).each { |email| }` like shown above.
 
 ## Acknowledgements ##
 

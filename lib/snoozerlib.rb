@@ -25,7 +25,7 @@ class Snoozer
     end
   end
 
-  setter :label, :day, :labeled_after, :labeled_before, :action
+  setter :labels, :days, :labeled_after, :labeled_before, :actions
 
   def initialize(args = {})
     defaults = {gmail_username: ENV['gmail_username'],
@@ -37,8 +37,8 @@ class Snoozer
 
   def unsnooze(&block)
     instance_eval(&block)
-    if Date.today.send("#{@day}?".to_sym)
-      self.send("#{@action}".to_sym)
+    if @days.map! { |day| day.downcase }.include? Date.today.strftime('%A').downcase
+      @actions.each { |action| self.send(action.to_sym) }
     end
   end
 
@@ -54,7 +54,7 @@ class Snoozer
     end
   end
 
-  def read_label(label = @label)
+  def read_label(label)
     Gmail.connect(@gmail_username, @gmail_password) do |gmail|
       return gmail.label(label).mails(search_args)
     end

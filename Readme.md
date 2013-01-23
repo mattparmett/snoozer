@@ -87,7 +87,7 @@ Actions have access to the list of labels specified in the Snoozer block through
 
 ## Acknowledgements ##
 
-[Crony](https://github.com/thomasjachmann/crony) -- Digest is based on Crony, a lightweight, free alternative to Heroku's cron add-on developed by [Thomas Jachmann](https://github.com/thomasjachmann).
+[Crony](https://github.com/thomasjachmann/crony) -- Snoozer is based on Crony, a lightweight, free alternative to Heroku's cron add-on developed by [Thomas Jachmann](https://github.com/thomasjachmann).
 
 [Rufus-Scheduler](https://github.com/jmettraux/rufus-scheduler) -- Powers Crony's cron mechanism.
 

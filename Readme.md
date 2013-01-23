@@ -30,22 +30,22 @@ Your login credentials are stored as envirnomental variables, so they're inacces
 The action happens in the `bin` folder, in `snoozer.rb`.  You will want to edit this file to change your desired label names, search criteria, etc.  Let's take a look at the possible options:
 
 ```ruby
-    snoozer.unsnooze do
-    	# The label snoozer should look for messages in
-      label                'Tomorrow'
+snoozer.unsnooze do
+	# The label snoozer should look for messages in
+  label                'Tomorrow'
 
-      # The day on which this filter should operate
-      day                  Date.today.strftime('%A').downcase
+  # The day on which this filter should operate
+  day                  Date.today.strftime('%A').downcase
 
-      # Operate on messages labeled before specified date
-      labeled_before       Date.today
+  # Operate on messages labeled before specified date
+  labeled_before       Date.today
 
-      # Operate on messages labeled after specified date
-      labeled_after				 Date.today - 4
+  # Operate on messages labeled after specified date
+  labeled_after        Date.today - 4
 
-      # Action to take on messages that match the above criteria
-      action               'unread_to_inbox'
-    end
+  # Action to take on messages that match the above criteria
+  action               'unread_to_inbox'
+end
 ```
 
 ### Workflow
@@ -65,7 +65,7 @@ Snoozer lets users define custom actions which it can then apply to email in one
 snoozer.unsnooze do
   label                'Test'
   day                  Date.today.strftime('%A').downcase
-  labeled_before        Date.today + 1
+  labeled_before       Date.today + 1
   action               [action_name]
 end
 ```
@@ -78,9 +78,7 @@ Actions are essentially extensions of the Snoozer class, which makes them availa
 class Snoozer
 	def star
 		read_label(@label).each do |email|
-      puts email.subject
-      email.unread!
-      email.move_to('Inbox', @label)
+      email.star!
     end
   end
 end
